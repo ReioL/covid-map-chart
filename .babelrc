@@ -1,0 +1,17 @@
+{
+  "presets": [
+    ["@babel/preset-env", {"useBuiltIns":"usage","debug":true,"corejs":3}],
+    "@babel/preset-react"]
+}
+
+/*
+"presets": [ ["@babel/preset-env", {
+  targets: [
+    "last 2 version",
+    "not dead",
+    "not < 2%"
+  ],
+  userBuiltIns:"entry"
+}],"@babel/preset-react"]
+now is needed to import babel/polyfill in app.js (entry point of app)
+*/
