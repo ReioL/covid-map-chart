@@ -6,7 +6,16 @@ import countriesData from "../countries.json"
 //[ -69.915760870999918, 12.497015692000076 ], [ -69.880197719999842, 12.453558661000045 ], ...] ] } },
 const { L } = window
 
+window.onclick = (event) => {
+  const modal = document.getElementById("myModal")
+  if (event.target === modal) {
+    modal.style.display = "none"
+  }
+}
+
 export default function App() {
+  const [openOverlay, setOpenOverlay] = useState(false)
+  const [location, setLocation] = useState("")
   let mymap = null
   useEffect(() => {
     mymap = L.map("root", { minZoom: 3, maxZoom: 6 }).setView([51.505, -0.09], 4)
@@ -46,7 +55,10 @@ export default function App() {
         data.forEach(({ location, confirmed, latitude, longitude }) => {
           const circle = L.circleMarker([latitude, longitude], { radius: 10, fillOpacity: 1 })
             .addTo(mymap)
-            .bindPopup(location)
+            .on("click", () => {
+              setOpenOverlay(true)
+              setLocation(location)
+            })
           const tooltip = L.tooltip({
             permanent: true,
             direction: "center",
@@ -59,5 +71,40 @@ export default function App() {
       })
   }, [])
 
-  return <></>
+  return (
+    <>
+      {openOverlay ? (
+        <div
+          role="button"
+          tabIndex="0"
+          onKeyPress={() => {}}
+          id="myModal"
+          onClick={() => setOpenOverlay(false)}
+          className="modal"
+          style={{ display: openOverlay ? "block" : "none" }}
+        >
+          <div className="modal-content">
+            <div className="modal-header">
+              <span
+                className="close"
+                onClick={() => setOpenOverlay(false)}
+                onKeyPress={() => {}}
+                role="button"
+                tabIndex="0"
+              >
+                &times;
+              </span>
+              <h2>{location} </h2>
+            </div>
+            <div className="modal-body">
+              <p>Here comes chart</p>
+            </div>
+            <div className="modal-footer">
+              <h3>Modal Footer</h3>
+            </div>
+          </div>
+        </div>
+      ) : null}
+    </>
+  )
 }
