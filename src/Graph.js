@@ -42,9 +42,9 @@ const chartConfig = {
           type: "linear",
           ticks: {
             beginAtZero: true,
-            maxTicksLimit: 15,
             min: 0,
             callback: (value, index, values) => {
+              console.log(values)
               return value
             },
           },
@@ -88,19 +88,19 @@ export default function Graph({ countryCode }) {
               label: "deaths",
               data: data.deathData,
               backgroundColor: "rgba(229, 42, 42, 1)",
-              minBarLength: 5,
+              minBarLength: 0,
             },
             {
               label: "recovered",
               data: data.recoveredData,
               backgroundColor: "rgba(82, 229, 42, 1)",
-              minBarLength: 5,
+              minBarLength: 1,
             },
             {
               label: "active",
               data: data.activeData,
               backgroundColor: "rgba(42, 104, 229, 1)",
-              minBarLength: 5,
+              minBarLength: 2,
             },
           ]
           chartInstance.update()

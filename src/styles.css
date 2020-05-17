@@ -1,23 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   cursor: default;
+  font-family: 'Roboto', sans-serif;
 }
 
 #root {
-  background-color: rgb(194, 194, 194);
+  background-image: linear-gradient(to right bottom, #051937, #001b46, #001b54, #001b62, #00186f);
   height: 100vh;
-  width:100%;
+  width:100vw;
 }
 
+.mapContainer {
+  padding:10px;
+}
+
+#map {
+  height: 50vh;
+  width:100%;
+  border-radius:10px;
+}
 .leaflet-tooltip-pane .text {
-  color: red; 
+  color: blue; 
   font-weight: bold;
-  background: transparent;
-  border:0;
-  box-shadow: none;
-  font-size: 1em;
+  background: rgba(255,255,255,0.1);
+  font-size: 1.2em;
 }
 
 
@@ -33,18 +43,14 @@
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
 }
 
 /* Modal Content */
 .modal-content {
   position: relative;
-  background-color: #fefefe;
   margin: auto;
-  padding: 0;
-  border: 1px solid #888;
   width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
@@ -72,22 +78,64 @@
 
 .close:hover,
 .close:focus {
-  color: #000;
+  color: white;
   text-decoration: none;
   cursor: pointer;
 }
 
 .modal-header {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: #001b62;
   color: white;
+  border-radius: 10px;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .modal-body {
-  padding: 2px 16px;}
+  padding: 2px 16px;
+  border-radius: 10px;
+  background-color: white;
+}
 
 .modal-footer {
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: #001a68;
   color: white;
+  border-radius: 10px;
+}
+
+.totalHeader {
+  color: white;
+  padding-left: 10px;
+  font-size: 2rem;
+  margin-top: 10px;
+}
+
+.totalData {
+  display:flex;
+  justify-content: space-evenly;
+  font-size: 2rem;
+  height:200px;
+  align-items: center;
+}
+
+.totalConfirmed, .totalDeaths, .totalRecovered {
+  flex: 0 1 30%;
+  text-align: center;
+  border: 3px solid white;
+  padding: 10px;
+}
+
+.totalConfirmed {
+  color:white
+}
+
+.totalDeaths {
+  color:red
+}
+
+.totalRecovered {
+  color:green
 }
